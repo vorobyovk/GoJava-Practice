@@ -18,10 +18,24 @@ public class Function {
  };
 
  public int firstNeparnoe(int[] input){
-   int number=-1;
-   for(int i=0;i<input.length;i++){
-    if(input[i]/2)
-   }
+     for(int i=0;i<input.length;i++){
+         if(input[i]%2!=0) return i;
+     }
+     return -1;
  };
+
+ public int[] arrayZmeyka(int[][] input){
+  int number = input.length*input[1].length;
+  int[] returnArray= new int[number];
+  number=-1;
+  for(int i=0;i<input.length;i++){
+
+    for(int j=0;j<input[i].length;j++){
+      number++;
+      returnArray[number]=input[i][j];
+    }
+  };
+  return returnArray;
+ }
 
 }
