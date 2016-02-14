@@ -52,8 +52,7 @@ public class Function {
  public int[] Spiral(int[][] input) {
          int number = input.length*input[0].length;
          int[] arraySpiral= new int[number];
-         int path=1; int round=0; int i=0; int key1=1; int key2=1;
-         if(input[0].length>input.length){ key1 = 2; key2 = 1;};
+         int path=1; int round=0; int i=0;
              while (i<number){
                     if(path==1&&i<number){
                          for(int j=round;j<=input[0].length-1-round;j++){arraySpiral[i]=input[round][j];i++;};
