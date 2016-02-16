@@ -42,7 +42,7 @@ public class MainClass {
      int[][] testArray = {{1,2,3},{4,5,6},{7,8,9},{10,11,12}};
      int[][] testArray2 = {{1,2},{3,4}};
      int[][] testArray3 = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
-     int[] spiralArray = functions.Spiral(inputArraySpiral);
+     int[] spiralArray = functions.Spiral(testArray);
      System.out.println("В резульаье обхода двумерного массива по спирали, получен одномерный массив: ");
      for(int i=0;i<spiralArray.length;i++)System.out.print(spiralArray[i]+", ");
 
