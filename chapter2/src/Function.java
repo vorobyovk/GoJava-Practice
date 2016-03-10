@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Function {
 
 //Алфавіт
@@ -5,6 +8,50 @@ public class Function {
       boolean check = true;
 
       return check;
+    }
+
+//2.1. Сумирование по основе 36
+    public String add36(String a, String b) {
+        StringBuilder result = new StringBuilder();
+        int aLength = a.length();
+        int bLength = b.length();
+        int temp = 0;
+        Map<Character,Integer> abc =  new HashMap<>();
+
+        for(int i=0;i<10;i++) {
+            abc.put((char)('0' + i), i);
+        }
+
+        for(int i=0;i<26;i++) {
+            abc.put((char)('a' + i), i + 10);
+            abc.put((char)('A' + i), i + 10);
+        }
+
+        for(int i = 0; i<aLength || i<bLength;i++) {
+         char tempA = (i<aLength) ? a.charAt(aLength-i-1) : '0';
+         char tempB = (i<bLength) ? b.charAt(bLength-i-1) : '0';
+         int sum = temp + abc.get(tempA) + abc.get(tempB);
+
+           if(sum < 36){
+            result.append(fromInt(sum));
+            temp = 0;
+           } else {
+             result.append(fromInt(sum % 36));
+             temp = 1;
+           };
+
+        };
+      if(temp == 1) result.append('1');
+
+      return result.reverse().toString();
+    }
+
+    private char fromInt(int Num){
+     if(Num < 10){
+       return (char)('0' + Num);
+     }  else {
+       return (char)('a' + Num - 10);
+     }
     }
 
 //2.2. Положительное среднее арифметическое
@@ -55,6 +102,28 @@ public class Function {
       return temp;
    };
 
-//
+//2.10. Бинарное сочетание
+    public String addBinnary(String a, String b) {
+     StringBuilder result = new StringBuilder();
+     int i=0;
+     int aLength = a.length();
+     int bLength = b.length();
+     int temp = 0;
+     while (i < aLength || i < bLength){
+
+       char aTemp = (i<aLength) ? a.charAt(aLength - 1 - i) : '0';
+       char bTemp = (i<bLength) ? b.charAt(bLength - 1 - i) : '0';
+       int sum = (aTemp - '0') + (bTemp - '0') + temp;
+       if(sum == 0){result.append('0');temp=0;}
+        else if(sum == 1){result.append('1');temp=0;}
+         else if(sum == 2){result.append('0');temp=1;}
+          else if(sum == 3){result.append('1');temp=1;};
+        i++;
+     }
+     if(temp == 1) result.append('1');
+     result.reverse();
+
+     return result.toString();
+    }
 
 }

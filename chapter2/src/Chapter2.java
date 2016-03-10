@@ -3,8 +3,10 @@ public class Chapter2 {
         Function function = new Function();
 
 //2.1. Сумирование по основе 36
-
-
+    String aSum36 = "9";
+    String bSum36 = "1";
+    String result36 = function.add36(aSum36,bSum36);
+    System.out.println("Summ 36: "+result36);
 
 //2.2. Положительное среднее арифметическое
         int a = 83648;
@@ -31,7 +33,17 @@ public class Chapter2 {
     System.out.println("Одинокое число равно: "+findNum);
 
 //
-    }
 
+
+//2.10. Бинарное сочетание
+    String aa = "101";
+    String bb = "100";
+    String addBinnary = function.addBinnary(aa,bb);
+    System.out.println("Adding binarry : "+addBinnary);
+
+
+
+
+    }
 
 }
