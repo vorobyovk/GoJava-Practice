@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public class Function {
 
@@ -13,24 +12,14 @@ public class Function {
 //2.1. Сумирование по основе 36
     public String add36(String a, String b) {
         StringBuilder result = new StringBuilder();
+        String chars = "0123456789abcdefghijklmnopqrstuvwxyz";
         int aLength = a.length();
         int bLength = b.length();
         int temp = 0;
-        Map<Character,Integer> abc =  new HashMap<>();
-
-        for(int i=0;i<10;i++) {
-            abc.put((char)('0' + i), i);
-        }
-
-        for(int i=0;i<26;i++) {
-            abc.put((char)('a' + i), i + 10);
-            abc.put((char)('A' + i), i + 10);
-        }
-
         for(int i = 0; i<aLength || i<bLength;i++) {
          char tempA = (i<aLength) ? a.charAt(aLength-i-1) : '0';
          char tempB = (i<bLength) ? b.charAt(bLength-i-1) : '0';
-         int sum = temp + abc.get(tempA) + abc.get(tempB);
+         int sum = temp + chars.indexOf(tempA)+chars.indexOf(tempB);
 
            if(sum < 36){
             result.append(fromInt(sum));
@@ -89,18 +78,50 @@ public class Function {
 
 //2.5. Одинокое число
     public int findNumber(int[] input) {
-     int temp=input[0];
-     int count = 0;
-     for(int j=0;j<input.length;j++) {
-         if(count==1) break;
-         count=0;
-         temp = input[j];
-         for (int i = 0; i < input.length; i++) {
-             if (temp == input[i])count++;
-         };
-     }
-      return temp;
+        Arrays.sort(input);
+        if(input[0]!=input[1]) return input[0];
+        if(input[input.length-1]!=input[input.length-2]) return input[input.length-1];
+        for(int i=0;i<input.length-1;i+=5) if(input[i]!=input[i+1]) return input[i];
+        return 0;
    };
+//2.6. Битовый полиндром
+    public boolean isPalindrome(int input) {
+      boolean result = false;
+      int temp = input;
+      if (input < 0) input = input*-1;
+      StringBuilder b = new StringBuilder();
+      while (input !=0) {
+          b.append(input%2);
+          input = input/2;
+      };
+       int lengthB = b.length();
+       for(int i=0;i<32-lengthB-1;i++) b.append(0);
+       if(temp<0) b.append(1); else b.append(0);
+       b.reverse();
+       for(int i=0;i<b.length();i++){
+        if(b.charAt(i)==b.charAt(b.length()-1-i)) result = true;
+           else {result = false; break;};
+       }
+       return result;
+    }
+
+//2.7  Бит реверс
+    public int reverse(int input) {
+      int bitRevers = 0;
+      int temp = input;
+      if (input < 0) input = input*-1;
+      StringBuilder b = new StringBuilder();
+      while (input !=0) {
+        b.append(input%2);
+        input = input/2;
+      };
+      int lengthB = b.length();
+      for(int i=0;i<32-lengthB-1;i++) b.append(0);
+      if(temp<0) b.append(1); else b.append(0);
+      System.out.println(b);
+      bitRevers = Integer.parseInt(b.toString(),2);
+      return bitRevers;
+    }
 
 //2.10. Бинарное сочетание
     public String addBinnary(String a, String b) {
