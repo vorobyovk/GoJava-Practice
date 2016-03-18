@@ -2,13 +2,6 @@ import java.util.Arrays;
 
 public class Function {
 
-//Алфавіт
-    public boolean checkAlphabet(String input) {
-      boolean check = true;
-
-      return check;
-    }
-
 //2.1. Сумирование по основе 36
     public String add36(String a, String b) {
         StringBuilder result = new StringBuilder();
@@ -95,7 +88,7 @@ public class Function {
           input = input/2;
       };
        int lengthB = b.length();
-       for(int i=0;i<32-lengthB-1;i++) b.append(0);
+       for(int i=0;i<31-lengthB;i++) b.append(0);
        if(temp<0) b.append(1); else b.append(0);
        b.reverse();
        for(int i=0;i<b.length();i++){
@@ -107,21 +100,68 @@ public class Function {
 
 //2.7  Бит реверс
     public int reverse(int input) {
-      int bitRevers = 0;
-      int temp = input;
-      if (input < 0) input = input*-1;
-      StringBuilder b = new StringBuilder();
-      while (input !=0) {
-        b.append(input%2);
-        input = input/2;
-      };
-      int lengthB = b.length();
-      for(int i=0;i<32-lengthB-1;i++) b.append(0);
-      if(temp<0) b.append(1); else b.append(0);
-      System.out.println(b);
-      bitRevers = Integer.parseInt(b.toString(),2);
-      return bitRevers;
+        int bitRevers = 0;
+        int temp = input;
+        if (input < 0) input = input * -1;
+        StringBuilder b = new StringBuilder();
+        while (input != 0) {
+            b.append(input % 2);
+            input = input / 2;
+        }
+        int lengthB = b.length();
+        for (int i = 0; i < 31 - lengthB; i++) b.append(0);
+        if (temp < 0) b.append(1);
+        else b.append(0);
+  //      System.out.println(b);
+        String tempString = b.toString();
+        int a = 0, count = 0;
+        for (int i = tempString.length() - 1; i > 0; i--) {
+            a = Character.getNumericValue(tempString.charAt(i));
+            double temp2 = Math.pow(2, count) * a;
+            bitRevers = bitRevers + (int) temp2;
+            count++;
+        }
+        if (temp == 1) bitRevers = -2147483648;
+        if (tempString.charAt(0) == '1') bitRevers = bitRevers*-1;
+        return bitRevers;
     }
+
+//2.8. Количество бит
+    public int count(int num) {
+        int counter = 0;
+        for(int i=1;i<=32;i++){
+            int mask = 1<<(i-1);
+            int temp = mask&num;
+            if(temp!=0) counter++;
+        }
+        return counter;
+    }
+
+
+//2.9. Вставить ноль
+    public int set(int num, int i) {
+        int settingNum = num;
+        int temp = num;
+        if (num < 0) num = num * -1;
+        StringBuilder b = new StringBuilder();
+        while (num != 0) {
+            b.append(num % 2);
+            num = num / 2;
+        }
+        int lengthB = b.length();
+        for (int j = 0; j < 31 - lengthB; j++) b.append(0);
+        if (temp < 0) b.append(1);
+        else b.append(0);
+        b.reverse();
+        System.out.println(b);
+        b.setCharAt(31-i+1,'0');
+        System.out.println(b);
+        String tempString = b.toString();
+        settingNum = Integer.parseInt(tempString,2);
+        if (temp<0) settingNum = settingNum*-1;
+        return settingNum;
+    }
+
 
 //2.10. Бинарное сочетание
     public String addBinnary(String a, String b) {

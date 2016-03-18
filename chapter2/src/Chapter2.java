@@ -38,17 +38,25 @@ public class Chapter2 {
     System.out.println("2.6 Polindrome is: "+resultPolindrome);
 
 //2.7  Бит реверс
-    int bitRevers = 2;
+    int bitRevers = 65535;
     int reversedBit = function.reverse(bitRevers);
     System.out.println("2.7 Reversed is: "+reversedBit);
+
+//2.8. Количество бит
+    int numberForCount = -2147483647;
+    int bitCount = function.count(numberForCount);
+    System.out.println("2.8 Count bit in number: "+bitCount);
+
+//2.9. Вставить ноль
+    int numForSetting = 1;
+    int settingNumber = function.set(numForSetting,1);
+    System.out.println("2.9 Setting number: "+settingNumber);
 
 //2.10. Бинарное сочетание
     String aa = "101";
     String bb = "100";
     String addBinnary = function.addBinnary(aa,bb);
     System.out.println("2.10 Adding binarry : "+addBinnary);
-
-
 
 
     }
