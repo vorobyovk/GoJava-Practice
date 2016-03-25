@@ -73,7 +73,11 @@ public class Function {
     }
 
 //3.3. Самый долгий период стабильности
+    public int count(int[] gdp) {
+        int count = 1;
 
+        return count;
+    }
 
 
 }

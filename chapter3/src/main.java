@@ -18,6 +18,13 @@ public class main {
     System.out.println("3.2 Simply path is: "+simplyPath);
 
 //3.3. Самый долгий период стабильности
+    int[] period  = {1,3,5,4,5,6,1,7,3,4};
+    int[] period2  = {900, 900, 900, 901, 902, 902, 903, 903};
+    int[] period3  = {900, 901, 902};
+    int[] period4  = {901, 901, 901, 902, 902, 903, 903, 902, 902, 901};
+    int longest = function.count(period4);
+    System.out.println("3.3 Longest stability period: "+longest);
+
 
 
     }
