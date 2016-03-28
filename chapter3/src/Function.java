@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Function {
 
@@ -74,10 +73,62 @@ public class Function {
 
 //3.3. Самый долгий период стабильности
     public int count(int[] gdp) {
-        int count = 1;
+        int count = 0;
+
+        for(int i = 0; i<gdp.length;i++) {
+            if(gdp.length != 1) {
+               if(i<gdp.length-1) {
+                   if (gdp[i] == gdp[i + 1] || gdp[i] + 1 == gdp[i + 1] || gdp[i] - 1 == gdp[i + 1]) {
+                       count++;
+                 }
+               }
+            } else count = 1;
+        }
 
         return count;
     }
 
+//3.4. Обратная польская запись
+    public int evaluate(String expression) {
+       List<String> expressionList = new ArrayList<String>();
+       int listCount = 0;
+       String tempWord = "";
+       for (int i=0;i<expression.length();i++){
+         if(expression.charAt(i) != ' '){
+             if(i<expression.length() - 1 && expression.charAt(i+1) != ' '){
+               String charExpression = Character.toString(expression.charAt(i));
+               tempWord = tempWord+charExpression;
+             } else {
+                String charExpression = Character.toString(expression.charAt(i));
+                tempWord = tempWord+charExpression;
+                expressionList.add(listCount,tempWord);
+                listCount++;
+                tempWord = "";
+             }
+         }
+       }
+        Deque<Integer> stack = new ArrayDeque<Integer>();
+        for (String x : expressionList) {
+            if (x.equals("+")) stack.push(stack.pop() + stack.pop());
+            else if (x.equals("-")) {
+                int b = stack.pop(), a = stack.pop();
+                stack.push(a - b);
+            }
+            else if (x.equals("*")) stack.push(stack.pop() * stack.pop());
+            else if (x.equals("/")) {
+                int b = stack.pop(), a = stack.pop();
+                stack.push(a / b);
+            }
+            else if (x.equals("u-")) stack.push(-stack.pop());
+            else stack.push(Integer.valueOf(x));
+        }
+        return stack.pop();
+    }
+
+//3.5. Площадь прямоугольников
+    public int measure(int[] x, int[] h, int[] w) {
+
+        return 0;
+    }
 
 }

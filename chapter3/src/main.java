@@ -22,11 +22,23 @@ public class main {
     int[] period2  = {900, 900, 900, 901, 902, 902, 903, 903};
     int[] period3  = {900, 901, 902};
     int[] period4  = {901, 901, 901, 902, 902, 903, 903, 902, 902, 901};
-    int longest = function.count(period4);
+    int[] period5  = {902, 902, 901, 902, 902, 903, 902, 902, 901, 902, 901, 901, 902, 903};
+    int longest = function.count(period3);
     System.out.println("3.3 Longest stability period: "+longest);
 
+//3.4. Обратная польская запись
+    String input = "1 2 +";
+    String input2 = "17 2 -";
+    String input3 = "3";
+    int outputPolish = function.evaluate(input3);
+    System.out.println("3.4 Result of calculating of revers polish notation is: "+outputPolish);
+
+//3.5. Площадь прямоугольников
 
 
     }
+
+
+
 
 }
